@@ -2,9 +2,8 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-
-  const [expression, setExpression] = useState("Translation will appear here")
-  const [userInput, setUserInput] = useState("")
+  const [expression, setExpression] = useState("Translation will appear here");
+  const [showUserInput, setShowUserInput] = useState("");
 
   const emojiDictonary = {
     "😊": "Happy",
@@ -12,19 +11,22 @@ function App() {
     "😔": "Sad",
     "🥡": "Takeout Box",
     "❤️": "Love",
-    "😑": "annoyance"
+    "😑": "annoyance",
   };
 
+  //converted to array to render
+  const emojis = Object.keys(emojiDictonary);
+
   const checkEmoji = (e) => {
-
-    if(!emojiDictonary[e.target.value]){
-      return setExpression("failure to recognise this emoji")
+    const result = emojiDictonary[e.target.value];
+    if (!result) {
+      setExpression("failure to recognise this emoji");
+      setShowUserInput(e.target.value);
+    } else {
+      setExpression(result);
+      setShowUserInput(e.target.value);
     }
-
-    const result = emojiDictonary[e.target.value]
-    setExpression(result)
-    setUserInput(e.target.value)
-  }
+  };
 
   return (
     <div className="app">
@@ -35,14 +37,16 @@ function App() {
         placeholder="put an emoji here to know the meaning"
         onChange={checkEmoji}
       />
-      <h2>{userInput}</h2>
-      <h1>{expression}</h1>
-      <span className="emoji"> 😊 </span>
-      <span className="emoji"> 😳 </span>
-      <span className="emoji"> 😔 </span>
-      <span className="emoji"> 🥡 </span>
-      <span className="emoji"> ❤️ </span>
-      <span className="emoji"> 😑 </span>
+      <h2>{showUserInput}</h2>
+      <h3>{expression}</h3>
+
+      {emojis.map((emoji) => {
+        return (
+          <span key={emoji} className="emoji">
+            {emoji}
+          </span>
+        );
+      })}
     </div>
   );
 }
