@@ -17,16 +17,22 @@ function App() {
   //converted to array to render
   const emojis = Object.keys(emojiDictonary);
 
-  const checkEmoji = (e) => {
+  const handleOnChange = (e) => {
+    setShowUserInput(e.target.value);
     const result = emojiDictonary[e.target.value];
     if (!result) {
-      setExpression("failure to recognise this emoji");
-      setShowUserInput(e.target.value);
-    } else {
-      setExpression(result);
-      setShowUserInput(e.target.value);
+      return setExpression("failure to recognise this emoji");
     }
+    setExpression(result);
   };
+
+  const handleClick = (emoji) => {
+    const result = emojiDictonary[emoji];
+    if (!result) {
+      return setExpression("failure to recognise this emoji");
+    }
+    setExpression(result);
+  } 
 
   return (
     <div className="app">
@@ -35,14 +41,14 @@ function App() {
         type="text"
         className="input-field"
         placeholder="put an emoji here to know the meaning"
-        onChange={checkEmoji}
+        onChange={handleOnChange}
       />
       <h2>{showUserInput}</h2>
       <h3>{expression}</h3>
 
       {emojis.map((emoji) => {
         return (
-          <span key={emoji} className="emoji">
+          <span key={emoji} className="emoji" onClick={()=>{handleClick(emoji)}}>
             {emoji}
           </span>
         );
