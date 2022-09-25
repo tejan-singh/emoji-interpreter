@@ -28,9 +28,6 @@ function App() {
 
   const handleClick = (emoji) => {
     const result = emojiDictonary[emoji];
-    if (!result) {
-      return setExpression("failure to recognise this emoji");
-    }
     setExpression(result);
   } 
 
