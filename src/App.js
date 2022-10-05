@@ -12,6 +12,9 @@ function App() {
     "🥡": "Takeout Box",
     "❤️": "Love",
     "😑": "annoyance",
+    "✨" : "sparcles",
+    "🔥": "fire",
+    "💣": "bomb"
   };
 
   //converted to array to render
