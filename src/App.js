@@ -14,7 +14,8 @@ function App() {
     "😑": "annoyance",
     "✨" : "sparcles",
     "🔥": "fire",
-    "💣": "bomb"
+    "💣": "bomb",
+    "🪔": "diwali"
   };
 
   //converted to array to render
